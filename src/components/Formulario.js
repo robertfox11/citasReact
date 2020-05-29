@@ -1,26 +1,26 @@
 import React, { Fragment, useState } from "react";
 import uuid from "uuid/v4";
 import PropTypes from "prop-types";
-
+//objeto
+import Citas from "../Citas";
+//inputs
+import InputName from "./inputs/InputName";
+import InputOwner from "./inputs/InputOwner";
+import InputDate from "./inputs/InputDate";
+import InputTime from "./inputs/InputTime";
+import TextTarea from "./inputs/TextTarea";
 const Formulario = ({ crearCita }) => {
-  // // Crear State de Citas
-  // const [cita, actualizarCita] = useState({
-  //     mascota: '',
-  //     propietario: '',
-  //     fecha: '',
-  //     hora: '',
-  //     sintomas: ''
-  // });
+  //   Crear State de Citas la function que reescribe este State Creamos un objeto
+  const [cita, updateCita] = useState(Citas);
   // const [ error, actualizarError ] = useState(false)
-
-  // // Función que se ejecuta cada que el usuario escribe en un input
-  // const actualizarState = e => {
-  //     actualizarCita({
-  //         ...cita,
-  //         [e.target.name]: e.target.value
-  //     })
-  // }
-
+  // Función que se ejecuta cada que el usuario escribe en un input
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    // updateCita({
+    //   ...cita,
+    //   [e.target.name]: e.target.value,
+    // });
+  };
   // // Extraer los valores
   // const { mascota, propietario, fecha, hora, sintomas } = cita;
 
@@ -61,51 +61,15 @@ const Formulario = ({ crearCita }) => {
       {/* onSubmit={submitCita} */}
       <form className="form-control">
         <label className="">Name Pets</label>
-        <input
-          type="text"
-          name="mascota"
-          className="u-full-width"
-          placeholder="Name Pets"
-          //   onChange={actualizarState}
-          //   value={mascota}
-        />
-
+        <InputName cita={cita} handleChange={handleChange} />
         <label>Name Owner</label>
-        <input
-          type="text"
-          name="propietario"
-          className="u-full-width"
-          placeholder="Name Owner"
-          //   onChange={actualizarState}
-          //   value={propietario}
-        />
-
+        <InputOwner cita={cita} handleChange={handleChange} />
         <label>Date</label>
-        <input
-          type="date"
-          name="date"
-          className="u-full-width"
-          //   onChange={actualizarState}
-          //   value={fecha}
-        />
-
+        <InputDate cita={cita} handleChange={handleChange} />
         <label>Hora</label>
-        <input
-          type="time"
-          name="time"
-          className="u-full-width"
-          //   onChange={actualizarState}
-          //   value={hora}
-        />
-
+        <InputTime cita={cita} handleChange={handleChange} />
         <label>Síntomas</label>
-        <textarea
-          className="u-full-width"
-          name="Symptoms"
-          //   onChange={actualizarState}
-          //   value={sintomas}
-        ></textarea>
-
+        <TextTarea cita={cita} handleChange={handleChange} />
         <button type="submit" className="u-full-width button-primary">
           Agregar Cita
         </button>
