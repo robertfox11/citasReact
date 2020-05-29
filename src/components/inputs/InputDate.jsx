@@ -7,7 +7,7 @@ const InputDate = ({ cita, handleChange }) => {
       name="date"
       className="u-full-width"
       onChange={handleChange}
-      //   value={date}
+      value={cita.date}
     />
   );
 };

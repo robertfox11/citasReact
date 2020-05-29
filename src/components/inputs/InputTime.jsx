@@ -4,10 +4,10 @@ const InputTime = ({ cita, handleChange }) => {
   return (
     <input
       type="time"
-      name="date"
+      name="time"
       className="u-full-width"
       onChange={handleChange}
-      //   value={times}
+      value={cita.time}
     />
   );
 };

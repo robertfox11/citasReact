@@ -6,7 +6,7 @@ const TextTarea = ({ cita, handleChange }) => {
       className="u-full-width"
       name="symptoms"
       onChange={handleChange}
-      // InputTime  value={symptoms}
+      value={cita.symptoms}
     ></textarea>
   );
 };

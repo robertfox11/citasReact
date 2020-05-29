@@ -8,7 +8,7 @@ const InputName = ({ cita, handleChange }) => {
       className="u-full-width"
       placeholder="Name Pets"
       onChange={handleChange}
-      //   value={mascota}
+      value={cita.pets}
     />
   );
 };

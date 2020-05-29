@@ -12,54 +12,59 @@ import TextTarea from "./inputs/TextTarea";
 const Formulario = ({ crearCita }) => {
   //   Crear State de Citas la function que reescribe este State Creamos un objeto
   const [cita, updateCita] = useState(Citas);
-  // const [ error, actualizarError ] = useState(false)
+  const [error, actualizarError] = useState(false);
   // Función que se ejecuta cada que el usuario escribe en un input
   const handleChange = (e) => {
-    console.log(e.target.value);
-    // updateCita({
-    //   ...cita,
-    //   [e.target.name]: e.target.value,
+    // console.log(e.target.value);
+    updateCita({
+      ...cita,
+      [e.target.name]: e.target.value,
+    });
+  };
+  // Extraer los valores
+  const { pets, owner, date, time, symptoms } = cita;
+  // Cuando el usuario presiona envia formulario cita
+  const submitCita = (e) => {
+    e.preventDefault();
+
+    // Validar
+    if (
+      pets.trim() === "" ||
+      owner.trim() === "" ||
+      date.trim() === "" ||
+      time.trim() === "" ||
+      symptoms.trim() === ""
+    ) {
+      actualizarError(true);
+      return;
+    }
+    // Eliminar el mensaje previo
+    actualizarError(false);
+
+    // // Asignar un ID
+    // cita.id = uuid();
+
+    // // Crear la cita
+    // crearCita(cita);
+
+    // // Reiniciar el form
+    // actualizarCita({
+    //   mascota: "",
+    //   propietario: "",
+    //   fecha: "",
+    //   hora: "",
+    //   sintomas: "",
     // });
   };
-  // // Extraer los valores
-  // const { mascota, propietario, fecha, hora, sintomas } = cita;
-
-  // // Cuando el usuario presiona agregar cita
-  // const submitCita = e => {
-  //     e.preventDefault();
-
-  //     // Validar
-  //     if(mascota.trim() === '' || propietario.trim() === ''  || fecha.trim() === ''  || hora.trim() === ''  || sintomas.trim() === '' ){
-  //         actualizarError(true);
-  //         return;
-  //     }
-  //     // Eliminar el mensaje previo
-  //     actualizarError(false);
-
-  //     // Asignar un ID
-  //     cita.id = uuid();
-
-  //     // Crear la cita
-  //     crearCita(cita);
-
-  //     // Reiniciar el form
-  //     actualizarCita({
-  //         mascota: '',
-  //         propietario: '',
-  //         fecha: '',
-  //         hora: '',
-  //         sintomas: ''
-  //     })
-  // }
 
   return (
     <Fragment>
       <h2>Crear Cita</h2>
-      {/* {error ? (
+      {error ? (
         <p className="alerta-error">Todos los campos son obligatorios</p>
-      ) : null} */}
-      {/* onSubmit={submitCita} */}
-      <form className="form-control">
+      ) : null}
+
+      <form onSubmit={submitCita} className="form-control">
         <label className="">Name Pets</label>
         <InputName cita={cita} handleChange={handleChange} />
         <label>Name Owner</label>
